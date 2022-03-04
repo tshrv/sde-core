@@ -1,2 +1,2 @@
-# sde-core-skills
+# SDE-CORE
 DSA, LLD, HLD(System Design)
