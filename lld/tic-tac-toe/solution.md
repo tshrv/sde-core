@@ -39,7 +39,7 @@
 
 ## ERD
 
-1. User - Player [1:N]
+1. User - Player [1:N] --> [1:1(ephemeral)]
 2. Game - Player [1:1], Player 1
 3. Game - Player [1:1], Player 2
 
@@ -48,14 +48,17 @@
 1. User
    1. request_new_game(self, target_user_id)
       1. MatchMaker.start_new_game
+
 2. MatchMaker
    1. start_new_game(cls, user_id_1, user_id_2)
       1. Player
       2. Game
-3. Player(User)
+
+3. Player(User) | User.Player
    1. make_move(self)
       1. Game.get_current_state
    2. finalize_game(self)
+
 4. Game
    1. pre_game_init(self)
    2. get_current_state(self)
@@ -71,3 +74,17 @@
       2. Game.request_next_move
    7. finalize_game(self)
       1. Player.finalize_game
+
+
+## Improvements
+
+1. Composition vs Inheritance
+2. Separate user and player resposibilities
+3. Stats read and write access rights
+4. Game
+   1. notification to users
+      1. game started
+      2. your turn
+      3. game ended
+      4. you won/loss
+5. Mediator pattern [https://medium.com/@andrewMacmurray/exploring-the-mediator-pattern-eadaebc871b4](https://medium.com/@andrewMacmurray/exploring-the-mediator-pattern-eadaebc871b4)
